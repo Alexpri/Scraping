@@ -1,15 +1,15 @@
 "use strict";
 const express  = require('express'),
       app      = express(),
-      scraper  = require('./lib/scraper.js'),
-	  http     = require('http');
+      path     = require('path'),
+      scraper  = require('./lib/scraper.js');
 
 
 
 app.set('port', 3000);
 
-http.createServer(app).listen(app.get('port'));
-
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname + '/public')));
 
 app.use('/vote', scraper);
+
+app.listen(app.get('port'));
